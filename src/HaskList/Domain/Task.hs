@@ -1,46 +1,39 @@
 module HaskList.Domain.Task where
 
-import qualified Data.Text as T
 import Data.Time (UTCTime)
-import System.Cron.Types
 
 ---------------------------------------------------------------
 data Task = Task
   { index       :: Int
   , priority    :: Priority
-  , desc        :: T.Text
+  , desc        :: String
   , completion  :: (Int, Int)
-  , schedule    :: Schedule
+  , due         :: UTCTime
+  , schedule    :: Maybe Schedule
   } deriving (Show, Eq)
 
 index'      :: Task -> Int
 priority'   :: Task -> Priority
-desc'       :: Task -> T.Text
+desc'       :: Task -> String
 completion' :: Task -> (Int, Int)
-schedule'   :: Task -> Schedule
+due' :: Task -> UTCTime
+schedule'   :: Task -> Maybe Schedule
 
 index' (Task{index = ret}) = ret
 priority' (Task{priority = ret}) = ret
 desc' (Task{desc = ret}) = ret
 completion' (Task{completion = ret}) = ret
+due' (Task{due = ret}) = ret
 schedule' (Task{schedule = ret}) = ret
-
----------------------------------------------------------------
-
-data Schedule = Schedule
-  { next        :: Maybe CronSchedule
-  , due         :: UTCTime
-  } deriving (Show, Eq)
-
-next' :: Schedule -> Maybe CronSchedule
-due'  :: Schedule -> UTCTime
-
-next' (Schedule{next = ret}) = ret
-due' (Schedule{due = ret}) = ret
 
 ---------------------------------------------------------------
 
 data Priority = High | Medium | Low
   deriving (Show, Eq, Ord)
+
+---------------------------------------------------------------
+
+data Schedule = Daily | Weekly | Monthly | Yearly
+  deriving (Show, Eq)
 
 ---------------------------------------------------------------
