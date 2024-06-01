@@ -1,11 +1,11 @@
-module HaskList.Data.TaskRepository where
+module App.ReadTasks where
 
 import System.Directory
 import System.IO.Error
 import Control.Exception
 import Control.Monad
 
-import HaskList.Domain.Task
+import App.Types
 
 type Strategy = Either () String -> String
 

@@ -1,7 +1,4 @@
--- Represents the tasks that the user
--- creates.
-
-module HaskList.Domain.Task where
+module App.Types where
 
 import Data.Time (TimeOfDay)
 
